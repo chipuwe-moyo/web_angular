@@ -1,0 +1,3 @@
+<button class="btn btn-primary" (click)="onGetCommodities()">Get Commodities</button>
+<hr>
+<app-commodity *ngFor="let commodity of commodities" [commodity]="commodity"></app-commodity>
