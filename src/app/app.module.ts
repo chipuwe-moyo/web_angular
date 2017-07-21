@@ -9,13 +9,18 @@ import { CommoditiesComponent } from './commodities/commodities.component';
 import { NewCommodityComponent } from './new-commodity/new-commodity.component';
 import {routing} from "./app.routing";
 import {CommodityService} from "./_service/commodity.service";
+import { RegisterComponent } from './register/register.component';
+import { LoginComponent } from './login/login.component';
+import {AuthService} from "./_service/auth.service";
 
 @NgModule({
   declarations: [
     AppComponent,
     CommodityComponent,
     CommoditiesComponent,
-    NewCommodityComponent
+    NewCommodityComponent,
+    RegisterComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -23,7 +28,7 @@ import {CommodityService} from "./_service/commodity.service";
     HttpModule,
     routing
   ],
-  providers: [CommodityService],
+  providers: [CommodityService, AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,7 +1,8 @@
 export interface Commodity{
-  product: string;
-  description : string;
-  date_posted: string;
+  id: number;
+  product_id: number;
+  user_id: number;
+  description: string;
   price: number;
   quantity: number;
   metric: string;

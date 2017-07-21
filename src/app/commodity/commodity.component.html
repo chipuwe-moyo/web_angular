@@ -1,13 +1,29 @@
 <div class="panel panel-default">
+  <div class="panel-heading">{{ commodity.product_id }}</div>
   <div class="panel-body">
-    {{ commodity.product}}
-    {{ commodity.description }}
-    {{ commodity.date_posted }}
-    {{ commodity.price }}
+    {{ commodity.description }}<br>
+    K{{ commodity.price }}<br>
     {{ commodity.quantity }}
     {{ commodity.metric }}
   </div>
   <div class="panel-footer">
-
+    <div *ngIf="editing">
+      <label for="product_id">Product</label>
+      <input id="product_id" type="number" [(ngModel)] = "editProduct"><br>
+      <label for="description">Description</label>
+      <input id="description" type="text" [(ngModel)] = "editDescription"><br>
+      <label for="price">Price</label>
+      <input id="price" type="number" [(ngModel)] = "editPrice"><br>
+      <label for="quantity">Quantity</label>
+      <input id="quantity" type="number" [(ngModel)] = "editQuantity"><br>
+      <label for="metric">Metric</label>
+      <input id="metric" type="text" [(ngModel)] = "editMetric"><br>
+      <a href="#" (click)="onUpdate()">Save</a>
+      <a href="#" (click)="onCancel()">Cancel</a>
+    </div>
+    <div *ngIf="!editing">
+      <a href="#" (click)="onEdit()">Edit</a>
+      <a href="#" (click)="onDelete()">Delete</a>
+    </div>
   </div>
 </div>

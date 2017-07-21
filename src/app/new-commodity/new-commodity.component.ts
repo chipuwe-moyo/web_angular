@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
+import {CommodityService} from "../_service/commodity.service";
 
 @Component({
   selector: 'app-new-commodity',
@@ -7,9 +9,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NewCommodityComponent implements OnInit {
 
-  constructor() { }
+  constructor(private commodityService: CommodityService) { }
 
   ngOnInit() {
+  }
+
+  onSubmit(form: NgForm) {
+    this.commodityService.addCommodity(
+      form.value.product_id,
+      form.value.description,
+      form.value.price,
+      form.value.quantity,
+      form.value.metric
+    )
+      .subscribe(
+        () => alert("Commodity Created")
+      );
+    form.reset();
   }
 
 }
