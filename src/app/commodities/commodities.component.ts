@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Commodity} from "../_interface/commodity.interface";
 import {CommodityService} from "../_service/commodity.service";
 import {Response} from '@angular/http';
@@ -12,20 +12,10 @@ export class CommoditiesComponent implements OnInit {
 
   commodities: Commodity[];
 
-  constructor(private commodityService: CommodityService) { }
+  constructor(private commodityService: CommodityService) {
+  }
 
   ngOnInit() {
-  }
-
-  onGetMyCommodities(){
-    this.commodityService.getMyCommodities()
-      .subscribe(
-        (commodities: Commodity[]) => this.commodities = commodities,
-        (error: Response) => console.log(error)
-      );
-  }
-
-  onGetAllCommodities(){
     this.commodityService.getAllCommodities()
       .subscribe(
         (commodities: Commodity[]) => this.commodities = commodities,
@@ -33,7 +23,23 @@ export class CommoditiesComponent implements OnInit {
       );
   }
 
-  onDeleted(commodity: Commodity){
+  onGetMyCommodities() {
+    this.commodityService.getMyCommodities()
+      .subscribe(
+        (commodities: Commodity[]) => this.commodities = commodities,
+        (error: Response) => console.log(error)
+      );
+  }
+
+  onGetAllCommodities() {
+    this.commodityService.getAllCommodities()
+      .subscribe(
+        (commodities: Commodity[]) => this.commodities = commodities,
+        (error: Response) => console.log(error)
+      );
+  }
+
+  onDeleted(commodity: Commodity) {
     const position = this.commodities.findIndex(
       (commodityEl: Commodity) => {
         return commodityEl.id == commodity.id;

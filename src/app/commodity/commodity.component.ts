@@ -1,8 +1,6 @@
 import {Component, Input, OnInit, Output, EventEmitter} from '@angular/core';
 import {Commodity} from "../_interface/commodity.interface";
 import {CommodityService} from "../_service/commodity.service";
-import {ProductService} from "../_service/product.service";
-import {Product} from "../_interface/product.interface";
 
 @Component({
   selector: 'app-commodity',
@@ -12,7 +10,6 @@ import {Product} from "../_interface/product.interface";
 export class CommodityComponent implements OnInit {
 
   @Input() commodity: Commodity;
-  @Input() products: Product[];
   @Output() commodityDeleted = new EventEmitter<Commodity>();
   editing = false;
   editProduct;
@@ -21,21 +18,13 @@ export class CommodityComponent implements OnInit {
   editQuantity;
   editMetric = '';
 
-  constructor(private commodityService: CommodityService, private productService: ProductService) { }
+  constructor(private commodityService: CommodityService) {
+  }
 
   ngOnInit() {
   }
 
-  onGetProducts(){
-    this.productService.getProducts()
-      .subscribe(
-        () => {
-
-        }
-      )
-  }
-
-  onEdit(){
+  onEdit() {
     this.editing = true;
     this.editProduct = this.commodity.product_id;
     this.editDescription = this.commodity.description;
@@ -44,14 +33,14 @@ export class CommodityComponent implements OnInit {
     this.editMetric = this.commodity.metric;
   }
 
-  onUpdate(){
+  onUpdate() {
     this.commodityService.updateCommodity(
-        this.commodity.id,
-        this.editProduct,
-        this.editDescription,
-        this.editPrice,
-        this.editQuantity,
-        this.editMetric)
+      this.commodity.id,
+      this.editProduct,
+      this.editDescription,
+      this.editPrice,
+      this.editQuantity,
+      this.editMetric)
       .subscribe(
         () => {
           this.commodity.product_id = this.editProduct;
@@ -69,13 +58,13 @@ export class CommodityComponent implements OnInit {
     this.editing = false;
   }
 
-  onCancel(){
+  onCancel() {
     this.editing = false;
     this.editDescription = '';
   }
 
-  onDelete(){
-    if (confirm('Are you sure you want to delete this')){
+  onDelete() {
+    if (confirm('Are you sure you want to delete this')) {
       this.commodityService.deleteCommodity(this.commodity.id)
         .subscribe(
           () => {
@@ -84,6 +73,13 @@ export class CommodityComponent implements OnInit {
           }
         );
     }
+  }
+
+  onLike() {
+    this.commodityService.likeCommodity(this.commodity.id)
+      .subscribe(
+        () => alert(this.commodity.user_id + " has been notified on " + this.commodity.product_id)
+      );
   }
 
 }

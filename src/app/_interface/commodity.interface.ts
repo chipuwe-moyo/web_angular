@@ -1,4 +1,4 @@
-export interface Commodity{
+export interface Commodity {
   id: number;
   product_id: number;
   user_id: number;

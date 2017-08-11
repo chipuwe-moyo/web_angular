@@ -1,19 +1,42 @@
 <div id="app">
   <div class="container">
-    <div class="row">
-      <div class="col-xs-12">
-        <a href="#" [routerLink] = "['/']">Dashboard</a> |
-        <a href="#" [routerLink] = "['/new-commodity']">Add a new commodity</a> |
-        <a href="#" [routerLink] = "['/register']">Register</a> |
-        <a href="#" [routerLink] = "['/login']">Login</a>
+    <nav class="navbar  navbar-inverse">
+      <div class="navbar-header">
+        <a href="#" class="navbar-brand" [routerLink]="['/']">
+          <span class="red">Farmer Produce</span><span class="blue">Trading Platform</span>
+        </a>
       </div>
-    </div>
+      <!-- On the left side of our navbar we'll display page navigation -->
+      <ul class="nav navbar-nav">
+        <li *ngIf="authService.loggedIn()">
+          <a href="#" [routerLink]="['/']">Home</a>
+        </li>
+
+        <li>
+          <a href="#" [routerLink]="['/commodities/all']">Farm Deals</a>
+        </li>
+      </ul>
+
+      <!-- On the right side of our navbar we'll display the login and logout actions depending on user state -->
+      <ul class="nav navbar-nav navbar-right">
+        <li *ngIf="!authService.loggedIn()">
+          <a href="#" [routerLink]="['/login']">Login</a>
+        </li>
+
+        <li *ngIf="!authService.loggedIn()">
+          <a href="#" [routerLink]="['/register']">Register</a>
+        </li>
+
+        <li *ngIf="authService.loggedIn()">
+          <a href="#" [routerLink]="['/login']">Logout</a>
+        </li>
+      </ul>
+    </nav>
+
     <hr>
-    <div class="row">
-      <div class="col-xs-12">
-        <router-outlet>
-        </router-outlet>
-      </div>
+    <div class="col-sm-12">
+      <router-outlet>
+      </router-outlet>
     </div>
   </div>
 </div>

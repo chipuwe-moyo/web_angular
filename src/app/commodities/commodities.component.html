@@ -1,4 +1,7 @@
-<button class="btn btn-primary" (click)="onGetMyCommodities()">My Commodities</button>
-<button class="btn btn-primary" (click)="onGetAllCommodities()">All Commodities</button>
-<hr>
-<app-commodity *ngFor="let commodity of commodities" [commodity]="commodity" (commodityDeleted)="onDeleted($event)"></app-commodity>
+<h3 class="text-center">What's on Sale</h3>
+
+<!-- We are going to get an array of commodities stored in the commodities variable. We'll loop over
+that variable here using the ngFor directive -->
+
+<app-commodity *ngFor="let commodity of commodities" [commodity]="commodity" (commodityDeleted)="onDeleted($event)">
+</app-commodity>

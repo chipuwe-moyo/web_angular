@@ -1,29 +1,44 @@
-<div class="panel panel-default">
-  <div class="panel-heading">{{ commodity.product_id }}</div>
-  <div class="panel-body">
-    {{ commodity.description }}<br>
-    K{{ commodity.price }}<br>
-    {{ commodity.quantity }}
-    {{ commodity.metric }}
-  </div>
-  <div class="panel-footer">
-    <div *ngIf="editing">
-      <label for="product_id">Product</label>
-      <input id="product_id" type="number" [(ngModel)] = "editProduct"><br>
-      <label for="description">Description</label>
-      <input id="description" type="text" [(ngModel)] = "editDescription"><br>
-      <label for="price">Price</label>
-      <input id="price" type="number" [(ngModel)] = "editPrice"><br>
-      <label for="quantity">Quantity</label>
-      <input id="quantity" type="number" [(ngModel)] = "editQuantity"><br>
-      <label for="metric">Metric</label>
-      <input id="metric" type="text" [(ngModel)] = "editMetric"><br>
-      <a href="#" (click)="onUpdate()">Save</a>
-      <a href="#" (click)="onCancel()">Cancel</a>
+<div class="col-sm-4">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <ul class="list-inline">
+        <li><h3 class="panel-title">{{ commodity.product_id}}</h3></li>
+        <li class="pull-right"><a (click)="onLike()" class="btn btn-success">Like</a></li>
+      </ul>
     </div>
-    <div *ngIf="!editing">
-      <a href="#" (click)="onEdit()">Edit</a>
-      <a href="#" (click)="onDelete()">Delete</a>
+
+    <div class="panel-body">
+      {{ commodity.user_id }}
+      {{ commodity.description }}<br>
+      K{{ commodity.price }}<br>
+      {{ commodity.quantity }}
+      {{ commodity.metric }}
+    </div>
+    <div class="panel-footer">
+      <div *ngIf="!editing">
+        <ul class="list-inline">
+          <li><a (click)="onEdit()" class="btn btn-primary">Edit</a></li>
+          <li class="pull-right"><a (click)="onDelete()" class="btn btn-danger">Delete</a></li>
+        </ul>
+      </div>
+
+      <div *ngIf="editing">
+        <label for="product_id">Product</label>
+        <input id="product_id" type="number" [(ngModel)]="editProduct"><br>
+        <label for="description">Description</label>
+        <input id="description" type="text" [(ngModel)]="editDescription"><br>
+        <label for="price">Price</label>
+        <input id="price" type="number" [(ngModel)]="editPrice"><br>
+        <label for="quantity">Quantity</label>
+        <input id="quantity" type="number" [(ngModel)]="editQuantity"><br>
+        <label for="metric">Metric</label>
+        <input id="metric" type="text" [(ngModel)]="editMetric"><br>
+        <ul class="list-inline">
+          <li><a (click)="onUpdate()" class="btn btn-success">Save</a></li>
+          <li><a (click)="onCancel()" class="btn btn-danger">Cancel</a></li>
+        </ul>
+      </div>
+
     </div>
   </div>
 </div>
