@@ -1,0 +1,24 @@
+<form #f="ngForm" (ngSubmit)="onSubmit(f)">
+  <span>* Required</span>
+  <div class="form-group">
+    <label for="product_id"><span>*</span>Product</label>
+    <input type="text" id="product_id" name="product_id" ngModel class="form-control" required>
+  </div>
+  <div class="form-group">
+    <label for="description">Description</label>
+    <textarea name="description" id="description" ngModel class="form-control"></textarea>
+  </div>
+  <div class="form-group">
+    <label for="price"><span>*</span>Price</label>
+    <input name="price" id="price" ngModel class="form-control" required>
+  </div>
+  <div class="form-group">
+    <label for="quantity"><span>*</span>Quantity</label>
+    <input name="quantity" id="quantity" ngModel class="form-control" required>
+  </div>
+  <div class="form-group">
+    <label for="metric"><span>*</span>Metric (e.g. kg)</label>
+    <input name="metric" id="metric" ngModel class="form-control" required>
+  </div>
+  <button class="btn btn-primary" [disabled]="!f.valid" type="submit">Submit</button>
+</form>

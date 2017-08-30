@@ -1,0 +1,15 @@
+#app {
+  margin: 30px;
+}
+
+.navbar-right {
+  margin-right: 0px !important;
+}
+
+.red {
+  color: red;
+}
+
+.blue {
+  color: blue;
+}
