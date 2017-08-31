@@ -8,12 +8,20 @@
       </div>
       <!-- On the left side of our navbar we'll display page navigation -->
       <ul class="nav navbar-nav">
-        <li *ngIf="authService.loggedIn()">
+        <li>
           <a href="#" [routerLink]="['/']">Home</a>
+        </li>
+
+        <li *ngIf="authService.loggedIn()">
+          <a href="#" [routerLink]="['/dashboard']">My Dashboard</a>
         </li>
 
         <li>
           <a href="#" [routerLink]="['/commodities/all']">Farm Deals</a>
+        </li>
+
+        <li>
+          <a href="#" [routerLink]="['/new-commodity']">Sell</a>
         </li>
       </ul>
 
@@ -32,7 +40,17 @@
         </li>
       </ul>
     </nav>
-
+    <div class="container">
+      <div class="row">
+        <div class="search">
+          <form role="form" #f="ngForm" (ngSubmit)="onSearch(f)">
+            <input type="text" name="query" id="query" class="form-control input-sm" maxlength="64" placeholder="Search" ngModel>
+            <button type="submit" class="btn btn-primary btn-sm">Search</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <a id="back-to-top" href="#" class="btn btn-primary btn-lg back-to-top" role="button" title="Click to return on the top page" data-toggle="tooltip" data-placement="left"><span class="glyphicon glyphicon-chevron-up"></span></a>
     <hr>
     <div class="col-sm-12">
       <router-outlet>

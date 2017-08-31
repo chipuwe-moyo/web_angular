@@ -2,18 +2,13 @@ import {Injectable} from "@angular/core";
 import {Http, Response} from "@angular/http";
 import 'rxjs/Rx'
 import 'rxjs/add/operator/map'
-import {Observable} from "rxjs/Observable";
 import {tokenNotExpired} from "angular2-jwt";
+import {Router} from "@angular/router";
 
 @Injectable()
 export class AuthService {
 
-  public token: string;
-
-  constructor(private http: Http) {
-    // set token if saved in local storage
-    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
-    this.token = currentUser && currentUser.token;
+  constructor(private http: Http, private router: Router) {
   }
 
   register(first_name: string,
@@ -40,36 +35,30 @@ export class AuthService {
     });
   }
 
-  login(username: string,
-        password: string): Observable<boolean> {
-    return this.http.post('http://localhost:8000/api/auth/login', {
-      username: username,
-      password: password
-    }).map(
-      (response: Response) => {
-        let token = response.json() && response.json().token;
-        if (token) {
-          // set token property
-          this.token = token;
-
-          // store username and jwt token in local storage to keep user logged in between page refreshes
-          localStorage.setItem('currentUser', JSON.stringify({username: username}));
-          localStorage.setItem('token', token);
-
-          // return true to indicate successful login
-          return true;
-        } else {
-          // return false to indicate failed login
-          localStorage.setItem('fail', 'fail');
-          return false;
+  login(username: string, password: string) {
+    return this.http.post('http://localhost:8000/api/auth/login',
+      {username: username, password: password})
+      .map(
+        (response: Response) => {
+          const token = response.json().token;
+          const base64Url = token.split('.')[1];
+          const base64 = base64Url.replace('-', '+').replace('_', '/');
+          return {token: token, decoded: JSON.parse(window.atob(base64))};
         }
+      )
+      .do(
+        tokenData => {
+          this.router.navigate(['/']);
+          localStorage.setItem('token', tokenData.token);
+        }
+      )
+      .finally(() => {
+
       });
   }
 
   logout(): void {
     // clear token remove user from local storage to log user out
-    this.token = null;
-    localStorage.removeItem('currentUser');
     localStorage.removeItem('token');
   }
 

@@ -1,3 +1,7 @@
 span {
   color: red;
 }
+
+span.not-required {
+  color: black;
+}

@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {NgForm} from '@angular/forms';
 import {AuthService} from "../_service/auth.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-register',
@@ -9,7 +10,7 @@ import {AuthService} from "../_service/auth.service";
 })
 export class RegisterComponent implements OnInit {
 
-  constructor(private authService: AuthService) {
+  constructor(private authService: AuthService, private router: Router) {
   }
 
   ngOnInit() {
@@ -28,8 +29,15 @@ export class RegisterComponent implements OnInit {
       form.value.email,
       form.value.phone_number)
       .subscribe(
-        response => console.log(response),
-        error => console.log(error)
+        () => {
+          this.authService.login(
+            form.value.username,
+            form.value.password)
+            .subscribe(
+              () => {this.router.navigate(['/']);}
+            );
+        },
+            error => console.log(error)
       );
   }
 

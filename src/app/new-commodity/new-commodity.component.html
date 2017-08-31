@@ -1,24 +1,70 @@
-<form #f="ngForm" (ngSubmit)="onSubmit(f)">
-  <span>* Required</span>
-  <div class="form-group">
-    <label for="product_id"><span>*</span>Product</label>
-    <input type="text" id="product_id" name="product_id" ngModel class="form-control" required>
+<div class="container">
+  <div class="row">
+    <div class="col-md-offset-2 col-md-8">
+      <div class="well well-sm">
+        <div class="panel-body">
+          <form role="form" #f="ngForm" (ngSubmit)="onSubmit(f)">
+            <div class="row">
+              <div class="col-md-6">
+                <span>* Required</span>
+                <div class="form-group">
+                  <label for="product">
+                    <span>*</span>Product</label>
+                  <input type="text" class="form-control" name="product" id="product" placeholder="Name of product" ngModel autofocus
+                         required>
+                </div>
+                <div class="form-group">
+                  <label for="price">
+                    <span>*</span>Price</label>
+                  <input type="number" class="form-control" name="price" id="price" placeholder="Enter your price" ngModel required>
+                </div>
+                <div class="form-group">
+                  <label for="quantity">
+                    <span>*</span>Quantity</label>
+                  <input type="number" class="form-control" name="quantity" id="quantity" placeholder="Enter your quantity" ngModel required>
+                </div>
+                <div class="form-group">
+                  <label for="metric">
+                    <span>*</span>Metric (e.g. kg)</label>
+                  <input type="text" class="form-control" name="metric" id="metric" placeholder="Name of metric" ngModel required>
+                </div>
+                <div class="form-group">
+                  <label for="town">
+                    <span>*</span>Town</label>
+                  <input type="text" class="form-control" name="town" id="town" placeholder="Town/City" ngModel required>
+                </div>
+                <div class="form-group">
+                  <label for="province">
+                    <span>*</span>Province</label>
+                  <input type="text" class="form-control" name="province" id="province" placeholder="Province/State" ngModel required>
+                </div>
+                <div class="form-group">
+                  <label for="country">
+                    <span>*</span>Country</label>
+                  <input type="text" class="form-control" name="country" id="country" placeholder="Country" ngModel required>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="description">
+                    Description</label>
+                  <textarea name="description" id="description" class="form-control" rows="9" cols="25" ngModel
+                            placeholder="Describe your product here (Optional)"></textarea>
+                </div>
+                <div class="form-group">
+                  <label for="photo">
+                    Photo</label>
+                  <input type="file" class="form-control" name="photo" id="photo" ngModel accept=".jpg,.png">
+                </div>
+              </div>
+              <div class="col-md-12">
+                <button type="submit" class="btn btn-primary pull-right" [disabled]="!f.valid">
+                  <span class="glyphicon glyphicon-upload not-required"></span> Add Product</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
   </div>
-  <div class="form-group">
-    <label for="description">Description</label>
-    <textarea name="description" id="description" ngModel class="form-control"></textarea>
-  </div>
-  <div class="form-group">
-    <label for="price"><span>*</span>Price</label>
-    <input name="price" id="price" ngModel class="form-control" required>
-  </div>
-  <div class="form-group">
-    <label for="quantity"><span>*</span>Quantity</label>
-    <input name="quantity" id="quantity" ngModel class="form-control" required>
-  </div>
-  <div class="form-group">
-    <label for="metric"><span>*</span>Metric (e.g. kg)</label>
-    <input name="metric" id="metric" ngModel class="form-control" required>
-  </div>
-  <button class="btn btn-primary" [disabled]="!f.valid" type="submit">Submit</button>
-</form>
+</div>

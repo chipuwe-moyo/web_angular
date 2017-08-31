@@ -11,18 +11,25 @@ export class CommodityService {
 
   }
 
-  addCommodity(product_id: number,
+  addCommodity(product: number,
                description: string,
                price: number,
                quantity: number,
-               metric: string) {
+               metric: string,
+               town: string,
+               province: string,
+               country: string
+  ) {
     const token = this.authService.getToken();
     const body = JSON.stringify({
-      product_id: product_id,
+      product: product,
       description: description,
       price: price,
       quantity: quantity,
-      metric: metric
+      metric: metric,
+      town: town,
+      province: province,
+      country: country
     });
     const headers = new Headers({'Content-Type': 'application/json'});
     return this.http.post('http://localhost:8000/api/commodity/store?token=' + token, body, {headers: headers});
@@ -47,6 +54,15 @@ export class CommodityService {
       );
   }
 
+  getCommodityInfo(id: number): Observable<Commodity> {
+    return this.http.get('http://localhost:8000/api/commodity/info/'+id)
+      .map(
+        (response: Response) => {
+          return response.json().commodity;
+        }
+      );
+  }
+
   updateCommodity(id: number,
                   newProduct: number,
                   newDescription: string,
@@ -55,7 +71,7 @@ export class CommodityService {
                   newMetric: string) {
     const token = this.authService.getToken();
     const body = JSON.stringify({
-      product_id: newProduct,
+      product: newProduct,
       description: newDescription,
       price: newPrice,
       quantity: newQuantity,
@@ -80,5 +96,10 @@ export class CommodityService {
       .map(
         (response: Response) => response.json()
       );
+  }
+
+  private handleError(error: any): Promise<any> {
+    console.error('An error occurred', error); // for demo purposes only
+    return Promise.reject(error.message || error);
   }
 }

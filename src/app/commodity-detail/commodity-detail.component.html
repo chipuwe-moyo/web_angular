@@ -1,0 +1,56 @@
+<div *ngIf="commodity" class="container">
+  <div class="row">
+    <div class="col-xs-4 item-photo">
+      <img style="max-width:100%;" src="http://placehold.it/500x325" />
+    </div>
+    <div class="col-xs-5" style="border:0px solid gray">
+      <!-- Datos del vendedor y titulo del producto -->
+      <h3>{{commodity.product}}</h3>
+      <h5 style="color:#337ab7">Seller <a href="#">{{commodity.user_id}}</a> · <small style="color:#337ab7">({{commodity.quantity}} {{commodity.metric}})</small></h5>
+
+      <!-- Precios -->
+      <h6 class="title-price"><small>Price</small></h6>
+      <h3 style="margin-top:0px;">ZMK {{commodity.price}}</h3>
+
+      <!-- Detalles especificos del producto -->
+      <div class="section">
+        <h6 class="title-attr" style="margin-top:15px;" ><small>TOWN/CITY</small></h6>
+        <div>
+          <div class="attr">{{commodity.town}}</div>
+        </div>
+      </div>
+      <div class="section" style="padding-bottom:5px;">
+        <h6 class="title-attr"><small>PROVINCE/STATE</small></h6>
+        <div>
+          <div class="attr2">{{commodity.province}}</div>
+        </div>
+      </div>
+      <div class="section" style="padding-bottom:20px;">
+        <h6 class="title-attr"><small>COUNTRY</small></h6>
+        <div>
+          <div class="attr2">{{commodity.country}}</div>
+        </div>
+      </div>
+
+      <!-- Botones de compra -->
+      <div class="section" style="padding-bottom:20px;">
+        <button class="btn btn-success" (click)="onLike()">
+          <span style="margin-right:20px" class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Add to Cart
+        </button>
+      </div>
+    </div>
+
+    <div class="col-xs-9">
+      <ul class="menu-items">
+        <li class="active">Description</li>
+      </ul>
+      <div style="width:100%;border-top:1px solid silver">
+        <p style="padding:15px;">
+          <small>
+             {{commodity.description}}
+          </small>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

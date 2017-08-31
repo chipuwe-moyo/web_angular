@@ -12,12 +12,13 @@ import {CommodityService} from "./_service/commodity.service";
 import {RegisterComponent} from './register/register.component';
 import {LoginComponent} from './login/login.component';
 import {AuthService} from "./_service/auth.service";
-import {ProductService} from "./_service/product.service";
-import {LikeComponent} from './like/like.component';
-import {LikesComponent} from './likes/likes.component';
 import {LikeService} from "./_service/like.service";
 import {HomeComponent} from './home/home.component';
 import {AuthGuard} from "./_guard/auth.guard";
+import {DashboardComponent} from './dashboard/dashboard.component';
+import {CommodityDetailComponent} from './commodity-detail/commodity-detail.component';
+import { SearchComponent } from './search/search.component';
+import {SearchService} from "./_service/search.service";
 
 @NgModule({
   declarations: [
@@ -27,9 +28,10 @@ import {AuthGuard} from "./_guard/auth.guard";
     NewCommodityComponent,
     RegisterComponent,
     LoginComponent,
-    LikeComponent,
-    LikesComponent,
     HomeComponent,
+    DashboardComponent,
+    CommodityDetailComponent,
+    SearchComponent,
   ],
   imports: [
     BrowserModule,
@@ -41,8 +43,8 @@ import {AuthGuard} from "./_guard/auth.guard";
     AuthGuard,
     CommodityService,
     AuthService,
-    ProductService,
     LikeService,
+    SearchService,
   ],
   bootstrap: [AppComponent]
 })

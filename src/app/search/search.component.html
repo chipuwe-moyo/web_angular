@@ -1,0 +1,6 @@
+<p>Showing results for: {{query}}</p>
+<hr>
+<div class="row text-center">
+  <app-commodity *ngFor="let commodity of commodities" [commodity]="commodity" (commodityDeleted)="onDeleted($event)">
+  </app-commodity>
+</div>
