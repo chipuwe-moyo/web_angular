@@ -1,22 +1,20 @@
-import {Component, OnInit} from '@angular/core';
-import {Commodity} from "../_interface/commodity.interface";
+import { Component, OnInit } from '@angular/core';
 import {CommodityService} from "../_service/commodity.service";
-import {Response} from '@angular/http';
+import {Commodity} from "../_interface/commodity.interface";
 
 @Component({
-  selector: 'app-commodities',
-  templateUrl: './commodities.component.html',
-  styleUrls: ['./commodities.component.css']
+  selector: 'app-dashboard',
+  templateUrl: './dashboard.component.html',
+  styleUrls: ['./dashboard.component.css']
 })
-export class CommoditiesComponent implements OnInit {
+export class DashboardComponent implements OnInit {
 
   commodities: Commodity[];
 
-  constructor(private commodityService: CommodityService) {
-  }
+  constructor(private commodityService: CommodityService) { }
 
   ngOnInit() {
-    this.commodityService.getAllCommodities()
+    this.commodityService.getMyCommodities()
       .subscribe(
         (commodities: Commodity[]) => this.commodities = commodities,
         (error: Response) => console.log(error)
