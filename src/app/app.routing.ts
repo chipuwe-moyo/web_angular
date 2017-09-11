@@ -9,6 +9,7 @@ import {AuthGuard} from "./_guard/auth.guard";
 import {DashboardComponent} from "./dashboard/dashboard.component";
 import {CommodityDetailComponent} from "./commodity-detail/commodity-detail.component";
 import {SearchComponent} from "./search/search.component";
+import {NotificationDetailComponent} from "./notification-detail/notification-detail.component";
 
 const APP_ROUTES: Routes = [
   {path: '', component: HomeComponent},
@@ -19,6 +20,7 @@ const APP_ROUTES: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'search', component: SearchComponent},
   {path: 'commodity-detail/:id', component: CommodityDetailComponent},
+  {path: 'notification-detail', component: NotificationDetailComponent, canActivate: [AuthGuard]},
 
   // otherwise redirect to home
   {path: '**', redirectTo: ''}

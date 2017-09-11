@@ -3,6 +3,8 @@ import {CommodityService} from "../_service/commodity.service";
 import {Commodity} from "../_interface/commodity.interface";
 import {AuthService} from "../_service/auth.service";
 import {ActivatedRoute, ParamMap} from "@angular/router";
+import {NgForm} from "@angular/forms";
+import {Location} from "@angular/common";
 
 @Component({
   selector: 'app-commodity-detail',
@@ -21,7 +23,8 @@ export class CommodityDetailComponent implements OnInit {
 
   constructor(private route: ActivatedRoute,
               private commodityService: CommodityService,
-              private authService: AuthService
+              private authService: AuthService,
+              private location: Location
   ) { }
 
   ngOnInit() {
@@ -81,10 +84,14 @@ export class CommodityDetailComponent implements OnInit {
     }
   }
 
-  onLike() {
-    this.commodityService.likeCommodity(this.commodity.id)
+  onNotify(form: NgForm) {
+    this.commodityService.notifyUser(this.commodity.id, form.value.message, form.value.recipient)
       .subscribe(
         () => alert(this.commodity.user_id + " has been notified on " + this.commodity.product)
       );
+  }
+
+  goBack(){
+    this.location.back();
   }
 }
