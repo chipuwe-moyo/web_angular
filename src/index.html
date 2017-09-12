@@ -12,6 +12,18 @@
         crossorigin="anonymous">
 </head>
 <body>
+
+<script>
+  function toggle() {
+    var x = document.getElementById('filter');
+    if (x.style.display === 'none') {
+      x.style.display = 'inline';
+    } else {
+      x.style.display = 'none';
+    }
+  }
+</script>
+
 <app-root>
   <div class="pokeball">
     <div class="upper">

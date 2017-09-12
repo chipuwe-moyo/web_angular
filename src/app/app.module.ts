@@ -20,6 +20,7 @@ import { SearchComponent } from './search/search.component';
 import {SearchService} from "./_service/search.service";
 import { NotificationDetailComponent } from './notification-detail/notification-detail.component';
 import {UserService} from "./_service/user.service";
+import {Ng2FilterPipeModule} from "ng2-filter-pipe";
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import {UserService} from "./_service/user.service";
     BrowserModule,
     FormsModule,
     HttpModule,
-    routing
+    routing,
+    Ng2FilterPipeModule
   ],
   providers: [
     AuthGuard,

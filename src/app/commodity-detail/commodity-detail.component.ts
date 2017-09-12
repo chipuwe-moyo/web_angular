@@ -5,6 +5,7 @@ import {AuthService} from "../_service/auth.service";
 import {ActivatedRoute, ParamMap} from "@angular/router";
 import {NgForm} from "@angular/forms";
 import {Location} from "@angular/common";
+import {UserService} from "../_service/user.service";
 
 @Component({
   selector: 'app-commodity-detail',
@@ -24,7 +25,8 @@ export class CommodityDetailComponent implements OnInit {
   constructor(private route: ActivatedRoute,
               private commodityService: CommodityService,
               private authService: AuthService,
-              private location: Location
+              private location: Location,
+              private userService: UserService
   ) { }
 
   ngOnInit() {
@@ -85,7 +87,7 @@ export class CommodityDetailComponent implements OnInit {
   }
 
   onNotify(form: NgForm) {
-    this.commodityService.notifyUser(this.commodity.id, form.value.message, form.value.recipient)
+    this.userService.notifyUser(this.commodity.id, form.value.message, form.value.recipient)
       .subscribe(
         () => alert(this.commodity.user_id + " has been notified on " + this.commodity.product)
       );

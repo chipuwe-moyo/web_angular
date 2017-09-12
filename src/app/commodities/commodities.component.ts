@@ -11,6 +11,7 @@ import {Response} from '@angular/http';
 export class CommoditiesComponent implements OnInit {
 
   commodities: Commodity[];
+  commodityFilter: any = { town: '', province: '', country: ''};
 
   constructor(private commodityService: CommodityService) {
   }

@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import {UserService} from "../_service/user.service";
-import {Notification} from "../_interface/notification.interface";
 import {Location} from "@angular/common";
 import {AuthService} from "../_service/auth.service";
 import {Commodity} from "../_interface/commodity.interface";
@@ -29,7 +28,7 @@ export class NotificationDetailComponent implements OnInit {
   }
 
   onNotify(form: NgForm) {
-    this.commodityService.notifyUser(this.commodity.id, form.value.message, form.value.recipient)
+    this.userService.notifyUser(this.commodity.id, form.value.message, form.value.recipient)
       .subscribe(
         () => alert(this.notification.data.user_id + " has been notified on " + this.commodity.product)
       );

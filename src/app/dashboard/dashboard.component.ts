@@ -24,7 +24,7 @@ export class DashboardComponent implements OnInit {
         (error: Response) => console.log(error)
       );
 
-    this.commodityService.getNotifications()
+    this.userService.getNotifications()
       .subscribe(
         (likes: Notification[]) => this.notifications = likes,
         (error: Response) =>console.log(error)
@@ -33,16 +33,7 @@ export class DashboardComponent implements OnInit {
 
   onNotification(notification: Notification){
     this.userService.notification = notification;
-    this.router.navigate(['/notification-detail'])
-  }
-
-  onDeleted(commodity: Commodity) {
-    const position = this.commodities.findIndex(
-      (commodityEl: Commodity) => {
-        return commodityEl.id == commodity.id;
-      }
-    );
-    this.commodities.splice(position, 1);
+    this.router.navigate(['/notification-detail']);
   }
 
 }

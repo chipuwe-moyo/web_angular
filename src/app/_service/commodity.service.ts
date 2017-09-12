@@ -4,7 +4,7 @@ import 'rxjs/Rx';
 import {Observable} from "rxjs/Observable";
 import {AuthService} from "./auth.service";
 import {Commodity} from "../_interface/commodity.interface";
-import {Notification} from "../_interface/notification.interface";
+
 
 @Injectable()
 export class CommodityService {
@@ -87,23 +87,5 @@ export class CommodityService {
   deleteCommodity(id: number) {
     const token = this.authService.getToken();
     return this.http.delete('http://localhost:8000/api/commodity/' + id + '?token=' + token);
-  }
-
-  notifyUser(id: number, message: string, recipient: number) {
-    const token = this.authService.getToken();
-    const body = JSON.stringify({message: message, recipient: recipient});
-    const headers = new Headers({'Content-Type': 'application/json'});
-    return this.http.post('http://localhost:8000/api/commodity/notify/' + id + '?token=' + token, body, {headers: headers})
-      .map(
-        (response: Response) => response.json()
-      );
-  }
-
-  getNotifications() : Observable <Notification[]> {
-    const token = this.authService.getToken();
-    return this.http.get('http://localhost:8000/api/commodity/notifications?token=' + token)
-      .map(
-        (response: Response) => response.json().notifications
-      )
   }
 }
