@@ -12,13 +12,15 @@ import {CommodityService} from "./_service/commodity.service";
 import {RegisterComponent} from './register/register.component';
 import {LoginComponent} from './login/login.component';
 import {AuthService} from "./_service/auth.service";
-import {LikeService} from "./_service/like.service";
 import {HomeComponent} from './home/home.component';
 import {AuthGuard} from "./_guard/auth.guard";
 import {DashboardComponent} from './dashboard/dashboard.component';
 import {CommodityDetailComponent} from './commodity-detail/commodity-detail.component';
 import { SearchComponent } from './search/search.component';
 import {SearchService} from "./_service/search.service";
+import { NotificationDetailComponent } from './notification-detail/notification-detail.component';
+import {UserService} from "./_service/user.service";
+import {Ng2FilterPipeModule} from "ng2-filter-pipe";
 
 @NgModule({
   declarations: [
@@ -32,19 +34,21 @@ import {SearchService} from "./_service/search.service";
     DashboardComponent,
     CommodityDetailComponent,
     SearchComponent,
+    NotificationDetailComponent,
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
-    routing
+    routing,
+    Ng2FilterPipeModule
   ],
   providers: [
     AuthGuard,
     CommodityService,
     AuthService,
-    LikeService,
     SearchService,
+    UserService,
   ],
   bootstrap: [AppComponent]
 })

@@ -5,11 +5,11 @@ import {Observable} from "rxjs/Observable";
 import {AuthService} from "./auth.service";
 import {Commodity} from "../_interface/commodity.interface";
 
+
 @Injectable()
 export class CommodityService {
-  constructor(private http: Http, private authService: AuthService) {
 
-  }
+  constructor(private http: Http, private authService: AuthService) { }
 
   addCommodity(product: number,
                description: string,
@@ -87,19 +87,5 @@ export class CommodityService {
   deleteCommodity(id: number) {
     const token = this.authService.getToken();
     return this.http.delete('http://localhost:8000/api/commodity/' + id + '?token=' + token);
-  }
-
-  likeCommodity(id: number) {
-    const token = this.authService.getToken();
-    const headers = new Headers({'Content-Type': 'application/json'});
-    return this.http.post('http://localhost:8000/api/commodity/like/' + id + '?token=' + token, {headers: headers})
-      .map(
-        (response: Response) => response.json()
-      );
-  }
-
-  private handleError(error: any): Promise<any> {
-    console.error('An error occurred', error); // for demo purposes only
-    return Promise.reject(error.message || error);
   }
 }

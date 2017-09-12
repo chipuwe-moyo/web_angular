@@ -1,9 +1,17 @@
 <h3 class="text-center">What's on Sale</h3>
+<!-- Filters -->
+<button onclick="toggle()" class="btn btn-primary"><span style="margin-right:20px" class="glyphicon glyphicon-filter" aria-hidden="true"></span></button>
+<div id="filter" style="display: none">
+  <input type="text" [(ngModel)]="commodityFilter.town" placeholder="town">
+  <input type="text" [(ngModel)]="commodityFilter.province" placeholder="province">
+  <input type="text" [(ngModel)]="commodityFilter.country" placeholder="country">
+</div>
+<!--End Filters-->
 
 <!-- We are going to get an array of commodities stored in the commodities variable. We'll loop over
 that variable here using the ngFor directive -->
-
+<hr>
 <div class="row text-center">
-  <app-commodity *ngFor="let commodity of commodities" [commodity]="commodity" (commodityDeleted)="onDeleted($event)">
+  <app-commodity *ngFor="let commodity of commodities | filterBy: commodityFilter" [commodity]="commodity" (commodityDeleted)="onDeleted($event)">
   </app-commodity>
 </div>

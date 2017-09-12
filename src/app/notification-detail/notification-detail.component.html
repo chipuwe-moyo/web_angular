@@ -6,13 +6,10 @@
 <hr>
 <div *ngIf="commodity" class="container">
   <div class="row">
-    <div class="col-xs-4 item-photo">
-      <img style="max-width:100%;" src="http://placehold.it/500x325"/>
-    </div>
-    <div class="col-xs-5" style="border:0px solid gray">
+        <div class="col-xs-5" style="border:0px solid gray">
       <!-- Datos del vendedor y titulo del producto -->
       <h3>{{commodity.product}}</h3>
-      <h5 style="color:#337ab7">Seller <a href="#">{{commodity.user_id}}</a> ·
+      <h5 style="color:#337ab7">From <a href="#">{{notification.data.user_id}}</a> ·
         <small style="color:#337ab7">({{commodity.quantity}} {{commodity.metric}})</small>
       </h5>
 
@@ -53,7 +50,7 @@
           <textarea name="message" id="message" class="form-control" rows="3" cols="4" ngModel
                     placeholder="Enter Your Message Here (Optional)"></textarea>
           </div>
-          <input type="hidden" id="recipient" name="recipient" ngModel="{{commodity.user_id}}">
+          <input type="hidden" id="recipient" name="recipient" ngModel="{{notification.data.user_id}}">
           <!-- Botones de compra -->
           <div class="section" style="padding-bottom:20px;">
             <button class="btn btn-success" type="submit">
@@ -78,3 +75,4 @@
     </div>
   </div>
 </div>
+

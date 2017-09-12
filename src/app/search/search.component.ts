@@ -11,6 +11,7 @@ export class SearchComponent implements OnInit {
 
   query: string;
   commodities : Commodity[];
+  commodityFilter: any = {town: '', province: '', country: ''};
 
   constructor(private searchService: SearchService) {
   }
